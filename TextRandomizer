@@ -1,0 +1,45 @@
+<?php
+
+$string1 = array("Пожалуйста, ","Просто ", "Если сможете ");
+$string1_2 = "сделайте так, чтобы это ";
+$string2 = array("удивительное ","крутое ","простое ","важное ","бесполезное ");
+$string2_2 = "тестовое предложение ";
+$string3 = array("изменялось ","менялось каждый раз");
+$string4 = array("быстро ","мгновенно ","оперативно ","правильно ");
+$string4_2 = "случайным образом";
+$table  = array(); // Созданная при генерации таблица
+$table2 = array("Нужно ли сделать генерацию?","Если сможете сделайте так, чтобы это бесполезное тестовое предложение изменялось быстро случайным образом"); //Таблица из базы данных   
+
+    
+// Алгоритм генерации предложений
+for ($a =0;$a<count($string1);$a++)
+{
+    
+    for ($b =0;$b<count($string2);$b++)
+    {
+      
+      for ($c =0;$c<count($string3);$c++)
+      {
+          if ($c==0)
+          {
+              for ($d =0;$d<count($string4);$d++)
+              {  $string5 =$string1[$a].$string1_2.$string2[$b].$string2_2.$string3[$c].$string4[$d].$string4_2;
+              array_push($table, $string5);
+              };
+          }
+          else 
+          { $string5 =$string1[$a].$string1_2.$string2[$b].$string2_2.$string3[$c];
+              array_push($table, $string5);
+             
+          }
+      };
+    };
+}
+
+foreach($table as $value) 
+{
+array_push($table2,$value);//Добавляет данные из сгенерированной таблицы в таблицу базы данных
+}
+$result = array_unique($table2); //Удаляет одинаковые значения
+print_r($result);
+?>
